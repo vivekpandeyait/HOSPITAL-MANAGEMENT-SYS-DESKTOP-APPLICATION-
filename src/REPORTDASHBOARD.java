@@ -1,6 +1,6 @@
 
 import java.awt.print.PrinterException;
-import java.sql.Date;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,12 +13,12 @@ import java.util.logging.Logger;
  *
  * @author OM SAI RAM
  */
-public class REPORTDASHBOARD extends javax.swing.JFrame {
-  
+public class reportdashboard extends javax.swing.JFrame {
+
     /**
-     * Creates new form REPORTDASHBOARD
+     * Creates new form reportdashboard
      */
-    public REPORTDASHBOARD() {
+    public reportdashboard() {
         initComponents();
     }
 
@@ -34,7 +34,7 @@ public class REPORTDASHBOARD extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         titleframe = new javax.swing.JPanel();
         titlename = new javax.swing.JLabel();
-        logo = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         t1 = new javax.swing.JTextArea();
@@ -54,36 +54,44 @@ public class REPORTDASHBOARD extends javax.swing.JFrame {
         titlename.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         titlename.setForeground(new java.awt.Color(255, 255, 255));
         titlename.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titlename.setText("HOSPITAL MANAGEMENT SYSTEM");
+        titlename.setText("ONLINE CERTIFICATION SYSTEM");
         titlename.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         titlename.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titlename.setPreferredSize(new java.awt.Dimension(450, 28));
+
+        jButton4.setBackground(new java.awt.Color(204, 0, 0));
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jButton4.setText("Logout");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout titleframeLayout = new javax.swing.GroupLayout(titleframe);
         titleframe.setLayout(titleframeLayout);
         titleframeLayout.setHorizontalGroup(
             titleframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titleframeLayout.createSequentialGroup()
-                .addGap(300, 300, 300)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(titlename, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(329, 329, 329)
+                .addComponent(jButton4)
+                .addGap(129, 129, 129))
         );
         titleframeLayout.setVerticalGroup(
             titleframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titleframeLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(titlename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 19, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addGroup(titleframeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titlename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
-
-        logo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hospital-building-clipart-vector_csp45854550.jpg"))); // NOI18N
-        logo.setText("jLabel1");
-        logo.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("PATIENT REPORT");
+        jLabel5.setText("Candidate Certificate Report");
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -117,10 +125,6 @@ public class REPORTDASHBOARD extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(titleframe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(379, 379, 379)
@@ -130,26 +134,25 @@ public class REPORTDASHBOARD extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(169, Short.MAX_VALUE))
+            .addComponent(titleframe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleframe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titleframe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(107, 107, 107))
         );
         jDesktopPane1.setLayer(titleframe, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -180,25 +183,36 @@ public class REPORTDASHBOARD extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Admin ob= new Admin(); 
-       ob.setVisible(true);
-       this.dispose();
+        HOME ob= new HOME();
+        ob.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        
+
         // String date = obj.toString();
-         
+
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             t1.print();
         } catch (PrinterException ex) {
-            Logger.getLogger(REPORTDASHBOARD.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(REPORTDASHBOARD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        LOGIN OBJ = null;
+        try {
+            OBJ = new  LOGIN();
+        } catch (SQLException ex) {
+            Logger.getLogger(LOGIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        OBJ.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -217,20 +231,20 @@ public class REPORTDASHBOARD extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(REPORTDASHBOARD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(reportdashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(REPORTDASHBOARD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(reportdashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(REPORTDASHBOARD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(reportdashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(REPORTDASHBOARD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(reportdashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new REPORTDASHBOARD().setVisible(true);
+                new reportdashboard().setVisible(true);
             }
         });
     }
@@ -238,10 +252,10 @@ public class REPORTDASHBOARD extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton4;
     public javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel logo;
     public javax.swing.JTextArea t1;
     private javax.swing.JPanel titleframe;
     private javax.swing.JLabel titlename;
